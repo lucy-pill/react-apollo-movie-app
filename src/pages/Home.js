@@ -1,19 +1,10 @@
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+import { GET_ALL_MOVIES } from '../api/movie';
 import styled from 'styled-components';
 
-const ALL_MOVIES = gql`
-  query getMovies {
-    allMovies {
-      title
-      id
-      medium_cover_image
-    }
-  }
-`;
-
 export default function Home() {
-  const { data, loading } = useQuery(ALL_MOVIES);
+  const { data, loading } = useQuery(GET_ALL_MOVIES);
 
   const navigate = useNavigate();
 

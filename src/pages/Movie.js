@@ -1,18 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
+import { GET_MOVIE } from '../api/movie';
 import styled from 'styled-components';
-
-const MOVIE = gql`
-  query getMovie($movieId: String!) {
-    movie(id: $movieId) {
-      id
-      title
-      medium_cover_image
-      rating
-      isLiked @client
-    }
-  }
-`;
 
 export default function Movie() {
   const { id } = useParams();
@@ -20,7 +9,7 @@ export default function Movie() {
     data,
     loading,
     client: { cache },
-  } = useQuery(MOVIE, {
+  } = useQuery(GET_MOVIE, {
     variables: {
       movieId: id,
     },
